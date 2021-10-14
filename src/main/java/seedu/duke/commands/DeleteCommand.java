@@ -2,7 +2,7 @@ package seedu.duke.commands;
 
 
 import java.util.Arrays;
-
+import seedu.duke.storage.GTDList;
 
 /**
  * delete a task from the taskList based on the index.
@@ -18,6 +18,11 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute() {
-        System.out.println("This is a delete command, the target index is " + Arrays.toString(targetIndex));
+        GTDList gtdList = GTDLists.get("inbox");
+        for (int i : targetIndex) {
+            String gtdThoughtName = gtdList.get(i).getTextRec();
+            gtdList.remove(i);
+            System.out.println("This is a delete command, the deleted task is:" + System.lineSeparator() + gtdThoughtName);
+        }
     }
 }
